@@ -22,7 +22,7 @@ public class ObtenerUltimos5correos {
             props.put("mail.imap.port", "993");
             
             String usuario = "fveracoding@gmail.com";
-            String password = "tutmqqffqoyljfbe";
+            String password = "___";
             
             Session sesion = Session.getDefaultInstance(props);
             Store almacen = sesion.getStore();

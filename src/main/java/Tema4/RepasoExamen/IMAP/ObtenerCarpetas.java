@@ -21,7 +21,7 @@ public class ObtenerCarpetas {
             props.put("mail.imap.port", "993");
             
             String usuario = "fveracoding@gmail.com";
-            String password = "";
+            String password = "___";
             
             Session sesion = Session.getDefaultInstance(props);
             Store almacen = sesion.getStore();

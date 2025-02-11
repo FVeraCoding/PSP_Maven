@@ -1,4 +1,5 @@
 Tema2\ActividadesPropuestas\actividad2_1\Raton.class
+Tema5\ActividadesPropuestas\Actividad5_2.class
 Tema2\Concurrencia\SincronizacionExchangerArchivos\Intercambio.class
 Tema2\Concurrencia\ExecutorService\PrepararPostre.class
 Tema2\ActividadesPropuestas\actividad2_3\Raton.class
@@ -36,7 +37,6 @@ Tema3\Actividad_2y3_Teoria\Actividad3.class
 Tema4\RepasoExamen\IMAP\ObtenerUltimos5correos.class
 Tema2\Concurrencia\SincronizacionExhanger5Tareas\Departamento.class
 Tema3\ActividadesPropuestas\Actividad3_1_Repaso\SocketServidor.class
-Tema4\RepasoExamen\SMTP\EnvioCorreoPlano.class
 Tema2\ActividadesPropuestas\Actividad2_7\GestorHojas.class
 Tema4\ActividadesPropuestas\ActividadPropuesta4_1.class
 Tema3\RelacionEjercicios\Ejercicio6\Servidor.class
@@ -45,6 +45,7 @@ Tema3\RelacionEjercicios\Ejercicio5\Cliente.class
 Tema3\ActividadesPropuestas\Actividad3_1\ClientSocketTCP.class
 Tema4\ActividadesPropuestas\ActividadPropuesta4_3.class
 Tema2\ActividadesPropuestas\Actividad2_4\EstirarPiernas.class
+Tema5\ActividadesPropuestas\Actividad5_3.class
 Tema2\Concurrencia\Thread_Runnable\Main.class
 Tema3\RelacionEjercicios\Ejercicio2\Servidor.class
 Tema2\Concurrencia\SincronizacionExchangerArchivos\Escritor.class

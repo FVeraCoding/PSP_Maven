@@ -3,60 +3,54 @@ package Tema5.ActividadesPropuestas;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Base64;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.*;
 
 public class Actividad5_3 {
-
-    private static SecretKey generarClaveAES() throws Exception {
+    public static void main(String[] args) throws Exception {
+        SecretKey claveAES = generarClaveAES();
+        
+        File archivoOriginal = new File("C:\\Users\\Fernando\\Desktop\\archivo.txt");
+        File archivoCifrado = new File("C:\\Users\\Fernando\\Desktop\\archivoCifrado.aes");
+        File archivoDescifrado = new File("C:\\Users\\Fernando\\Desktop\\archivo_descifrado.txt");
+        
+        cifrarArchivo(archivoOriginal, archivoCifrado, claveAES);
+        System.out.println("Archivo cifrado correctamente.");
+        
+        descifrarArchivo(archivoCifrado, archivoDescifrado, claveAES);
+        System.out.println("Archivo descifrado correctamente.");
+    }
+    
+    public static SecretKey generarClaveAES() throws Exception {
         KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
         keyGenerator.init(128);
         return keyGenerator.generateKey();
     }
-
-
-    public static void cifrarArchivo(String archivoEntrada, SecretKey claveAES) throws Exception {
+    
+    public static void cifrarArchivo(File archivoEntrada, File archivoSalida, SecretKey claveAES) throws Exception {
         Cipher cifrador = Cipher.getInstance("AES");
         cifrador.init(Cipher.ENCRYPT_MODE, claveAES);
-        String archivoCifrado = "C:\\Users\\Fernando\\Desktop\\archivo_cifrado.aes";
-
-        byte[] bytesEntrada = Files.readAllBytes(Paths.get(archivoEntrada));
-        byte[] bytesCifrados = cifrador.doFinal(bytesEntrada);
-
-        Files.write(Paths.get(archivoCifrado), bytesCifrados);
-        Files.delete(Paths.get(archivoEntrada));
+        
+        byte[] datos = leerArchivo(archivoEntrada);
+        byte[] datosCifrados = cifrador.doFinal(datos);
+        guardarArchivo(archivoSalida, datosCifrados);
     }
-
-    public static void descifrarArchivo(String archivoEntrada, SecretKey clave) throws Exception {
+    
+    public static void descifrarArchivo(File archivoEntrada, File archivoSalida, SecretKey claveAES) throws Exception {
         Cipher cifrador = Cipher.getInstance("AES");
-        cifrador.init(Cipher.DECRYPT_MODE, clave);
-        String archivoDescifrado = "C:\\Users\\Fernando\\Desktop\\archivo_descifrado.txt";
-
-        byte[] bytesCifrados = Files.readAllBytes(Paths.get(archivoEntrada));
-        byte[] bytesDescifrados = cifrador.doFinal(bytesCifrados);
-
-        Files.write(Paths.get(archivoDescifrado), bytesDescifrados);
+        cifrador.init(Cipher.DECRYPT_MODE, claveAES);
+        
+        byte[] datosCifrados = leerArchivo(archivoEntrada);
+        byte[] datosDescifrados = cifrador.doFinal(datosCifrados);
+        guardarArchivo(archivoSalida, datosDescifrados);
     }
-
-    public static void main(String[] args) {
-        try {
-            String archivoOriginal = "C:\\Users\\Fernando\\Desktop\\archivo.txt";
-            String archivoCifrado = "C:\\Users\\Fernando\\Desktop\\archivo_cifrado.aes";
-            
-            SecretKey claveAES = generarClaveAES();
-
-            cifrarArchivo(archivoOriginal, claveAES);
-            System.out.println("Archivo cifrado correctamente.");
-            
-            descifrarArchivo(archivoCifrado, claveAES);
-            System.out.println("Archivo descifrado correctamente.");
-                
-        } catch (Exception ex) {
-            Logger.getLogger(Actividad5_3.class.getName()).log(Level.SEVERE, null, ex);
+    
+    public static byte[] leerArchivo(File nombre) throws IOException {
+        return new FileInputStream(nombre).readAllBytes();
+    }
+    
+    public static void guardarArchivo(File nombre, byte[] datos) throws IOException {
+        try (FileOutputStream fos = new FileOutputStream(nombre)) {
+            fos.write(datos);
         }
     }
 }

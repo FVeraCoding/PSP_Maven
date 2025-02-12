@@ -2,7 +2,6 @@ package Tema5.ActividadesPropuestas;
 
 import java.io.*;
 import java.security.*;
-import java.util.Scanner;
 
 public class Actividad5_5 {
     public static void main(String[] args) throws Exception {

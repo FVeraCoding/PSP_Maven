@@ -12,7 +12,7 @@ public class Actividad5_2 {
     
     public static String calcularHASH(File archivo) throws NoSuchAlgorithmException, IOException {
         MessageDigest digest = MessageDigest.getInstance("SHA-512");
-        try (FileInputStream fis = new FileInputStream(archivo.getAbsolutePath())) {
+        try (FileInputStream fis = new FileInputStream(archivo)) {
             byte[] buffer = new byte[1024];
             int bytesLeidos = fis.read(buffer);
             
